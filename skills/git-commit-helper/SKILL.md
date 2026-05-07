@@ -66,6 +66,7 @@ PMS: <TYPE>-<ID>
 - Scope: the module or component affected (e.g., `user-license`, `login`, `cmake`)
 - Description: imperative mood, no period, lowercase start
 - English title and Chinese title should convey the same meaning
+- **Title length limit**: Keep the entire title line (including type and scope) under 50 characters when possible. If the scope is long, consider abbreviating it.
 
 **Content (numbered list):** What changed and why, in bullet points.
 - Each point should be one clear, concise sentence
