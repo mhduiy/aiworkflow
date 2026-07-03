@@ -151,3 +151,6 @@ The user may also provide context through the conversation — e.g., they've bee
 - Never read translation diffs fully
 - Summarize, don't quote — you're explaining changes, not reproducing them
 - If the user provides enough context, you may not need to read the diff at all — just ask to confirm
+
+PMS: BUG-368759
+ocr界面提示文字大小颜色不对
