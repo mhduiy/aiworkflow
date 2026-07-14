@@ -47,6 +47,7 @@ The message MUST follow this exact structure:
 ...
 
 Log: <One-line English summary of the key change>
+Influence: <One short English sentence summarizing the impact>
 
 <type>(<scope>): <chinese title>
 
@@ -57,6 +58,7 @@ Log: <One-line English summary of the key change>
 
 Log: <一行中文总结关键变更>
 PMS: <TYPE>-<ID>
+Influence: <一句简短的中文影响总结>
 ```
 
 **Parts explained:**
@@ -92,18 +94,26 @@ PMS: <TYPE>-<ID>
 - Do NOT write full URLs — use the shorthand format
 - When amending, preserve all existing links from the original message
 
+**Influence (impact lines):** Summarize the practical impact once in each language.
+- Place the English `Influence` immediately after the English Log
+- Place the Chinese `Influence` immediately after the PMS line; if there is no PMS line, place it after the other footer links
+- Keep each line to one sentence, at most 50 characters excluding the `Influence: ` prefix
+- Make the Chinese sentence mirror the English sentence
+- State only the direct user, system, compatibility, or delivery impact
+- Be concise and specific; do not repeat the title, bullets, or Log
+
 ### 4. Handle amend
 
 When the user asks to amend the last commit message:
 
 1. Read the current message: `git log -1 --format=%B`
-2. Extract existing footer links (PMS, Bug, Jira, Change-Id, etc.) — these MUST be preserved
+2. Extract existing footer fields (PMS, Bug, Jira, Change-Id, Influence, etc.) — these MUST be preserved
 3. Extract existing Log: lines — keep as reference but regenerate if the user provides new hints
 4. Re-analyze the staged changes (if any new ones) using the same token-efficient approach
 5. Generate the new message, carrying over all preserved metadata
 6. The user can still provide hints/prompts that override the original content
 
-**Preserved metadata during amend:** Links, Change-Id, PMS IDs, any footer fields. These are never lost.
+**Preserved metadata during amend:** Links, Change-Id, PMS IDs, Influence, and any footer fields. These are never lost.
 
 ### 5. Preview and confirm
 
@@ -140,6 +150,9 @@ The user may also provide context through the conversation — e.g., they've bee
 - Content bullets: numbered `1. 2. 3.` — one per change
 - Log: plain one-liner, no markup
 - Footer: `PMS: <TYPE>-<ID>` — immediately after Chinese Log with NO blank line
+- English Influence: `Influence: <English impact>` — immediately after the English Log
+- Chinese Influence: `Influence: <中文影响>` — immediately after PMS
+- Each Influence must be one short sentence of at most 50 characters, excluding the prefix
 - Blank line between each major section (title/content/log) except footer
 - The entire message is two blocks (English then Chinese) separated by a blank line
 - Keep lines under 100 characters where possible — wrap naturally if needed
